@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.Login">
+    <children>
+        <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #8555FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logoBlack1.png" />
+                    </image>
+                </ImageView>
+                <Label text="Welcome To " textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label text="Chatoo" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="55.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Pane id="forgetBut" fx:id="content_area" layoutX="400.0" layoutY="-9.0" prefHeight="607.0" prefWidth="400.0" style="-fx-background-color: #FFF;" styleClass="closeBtn" stylesheets="@css/style.css" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXTextField fx:id="usernameField" focusColor="#6746cd" layoutX="26.0" layoutY="224.0" prefHeight="50.0" prefWidth="300.0" promptText="User Name" unFocusColor="#6747cd">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </JFXTextField>
+                <JFXButton id="loginBtn" fx:id="loginBtn" buttonType="RAISED" contentDisplay="CENTER" layoutX="25.0" layoutY="409.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#authentication" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #00000;" styleClass="loginBtn" stylesheets="@css/style.css" text="Log In" />
+                <ImageView fitHeight="113.0" fitWidth="111.0" layoutX="20.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="163.0" layoutY="102.0" text="Welcome Back">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="40.0" layoutY="128.0">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="182.0" layoutY="132.0" text="Sign in To Continue" />
+                <Label id="forgetBut" fx:id="errorLabel" layoutX="79.0" layoutY="373.0" styleClass="loginerror" stylesheets="@css/style.css" text="username or password incorrect" textAlignment="CENTER" textFill="#a1a1a1" visible="false">
+                    <font>
+                        <Font name="Ebrima Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="144.0" layoutY="147.0" prefHeight="30.0" prefWidth="200.0" />
+                <Label contentDisplay="CENTER" layoutX="95.0" layoutY="503.0" stylesheets="@css/style.css" text="New User ? " textFill="#a1a1a1">
+                    <font>
+                        <Font name="Andalus" size="15.0" />
+                    </font>
+                </Label>
+                <JFXPasswordField fx:id="passwordField" focusColor="#6746cd" layoutX="26.0" layoutY="304.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" unFocusColor="#6746cd">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </JFXPasswordField>
+                <Label id="forgetBut" fx:id="signupBtn" layoutX="179.0" layoutY="500.0" onMouseClicked="#showRegister" styleClass="forgetBut" stylesheets="@css/style.css" text="Sign Up" textAlignment="CENTER" textFill="#a1a1a1">
+                    <font>
+                        <Font name="Ebrima Bold" size="21.0" />
+                    </font>
+                </Label>
+                <JFXCheckBox fx:id="remember_me" layoutX="37.0" layoutY="372.0" nodeOrientation="RIGHT_TO_LEFT" text="Remember me" visible="false" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

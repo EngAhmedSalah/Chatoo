@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.Register">
+   <top>
+      <HBox alignment="CENTER" prefHeight="109.0" prefWidth="373.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="126.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo1.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="137.0" prefWidth="202.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Register to Continue" />
+                  <Separator prefWidth="200.0" />
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="399.0" prefWidth="300.0" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="usernameField" focusColor="#6746cd" layoutX="26.0" layoutY="224.0" prefHeight="50.0" prefWidth="300.0" promptText="User Name" unFocusColor="#6747cd">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="passwordField" focusColor="#6746cd" layoutX="26.0" layoutY="304.0" prefHeight="50.0" prefWidth="300.0" promptText="Password" unFocusColor="#6746cd">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="confirmationPasswordField" focusColor="#6746cd" layoutX="26.0" layoutY="304.0" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" unFocusColor="#6746cd">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXPasswordField>
+            <VBox alignment="CENTER" prefHeight="63.0" prefWidth="373.0">
+               <children>
+                  <JFXButton id="loginBtn" buttonType="RAISED" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#registerNewUser" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #00000;" styleClass="loginBtn" stylesheets="@css/style.css" text="Register" />
+               </children>
+            </VBox>
+            <Label fx:id="successLabel" text="user have been registerd successfully" textFill="#00ab1d" visible="false">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel" text="passwords aren't matched" textFill="#dd0000" visible="false">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
