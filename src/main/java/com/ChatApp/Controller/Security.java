@@ -14,24 +14,16 @@ public class Security
     DAO dao = new DAOImp();
     private static Security instance = null;
 
-    static
-    {
-        try
-        {
-            instance = new Security();
-        } catch (URISyntaxException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     private Security() throws URISyntaxException
     {
     }
 
-    public static Security getSecurityInstance()
+    public static Security getSecurityInstance() throws URISyntaxException
     {
-        return instance;
+        if(instance == null)
+            return new Security();
+        else
+            return instance;
     }
 
     public boolean auth(String username, String password)

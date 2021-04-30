@@ -27,6 +27,10 @@ public class Register
     @FXML
     private Label successLabel , errorLabel;
 
+    public Register() throws URISyntaxException
+    {
+    }
+
     @FXML
     void registerNewUser(ActionEvent event) throws IOException, URISyntaxException
     {

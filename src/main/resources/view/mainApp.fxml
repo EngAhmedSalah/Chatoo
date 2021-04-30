@@ -11,21 +11,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.MainAppController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.MainAppController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="800.0">
                <children>
                   <Label fx:id="membersLabel" text="members" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="265.0" prefWidth="600.0">
+            <ScrollPane prefHeight="473.0" prefWidth="800.0">
               <content>
-                <AnchorPane fx:id="messageArea" minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="596.0" />
+                <AnchorPane fx:id="messageArea" minHeight="0.0" minWidth="0.0" prefHeight="414.0" prefWidth="779.0" />
               </content>
             </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="11.0" prefWidth="800.0">
                <children>
                   <JFXButton buttonType="RAISED" onAction="#sendMessage" prefHeight="37.0" prefWidth="89.0" text="Send">
                      <graphic>
@@ -36,7 +36,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXTextArea fx:id="messageBox" prefHeight="67.0" prefWidth="520.0" promptText="Type your message" wrapText="true" />
+                  <JFXTextArea fx:id="messageBox" prefHeight="62.0" prefWidth="675.0" promptText="Type your message" wrapText="true" />
                </children>
             </HBox>
          </children>

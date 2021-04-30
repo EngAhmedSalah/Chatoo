@@ -1,5 +1,6 @@
 package com.ChatApp.Controller;
 
+import com.ChatApp.View.ViewFactory;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -10,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -21,6 +24,10 @@ import java.util.logging.Logger;
 public class Login
 {
     Security singleton = Security.getSecurityInstance();
+    ViewFactory viewFactory = new ViewFactory();
+
+    @FXML
+    private AnchorPane mainContentArea;
 
     @FXML
     private Pane content_area;
@@ -37,20 +44,12 @@ public class Login
     @FXML
     private JFXPasswordField passwordField;
 
+    public Login() throws URISyntaxException { }
+
     @FXML
     void showRegister(MouseEvent event)
     {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/register.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Register");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
+        viewFactory.showRegistration();
     }
 
 
@@ -61,7 +60,10 @@ public class Login
         String password = passwordField.getText();
         System.out.println(username + " " + password);
         if(singleton.auth(username , password))
-            System.out.println("Success");
+            {
+                mainContentArea.getChildren().clear();
+                mainContentArea.getChildren().add(viewFactory.showMainApp());
+            }
         else
             errorLabel.setVisible(true);
     }
