@@ -2,18 +2,16 @@ package com.ChatApp.Model;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server
 {
+    int idx = 1;
     public static Server serverInstance;
     private static int port = 9507;
-    private int idx = 1;
-    public static ArrayList<ClientServerHandler> clients;
+    public static ArrayList<ClientHandler> clients;
     public static ExecutorService pool  = Executors.newFixedThreadPool(100);
     ServerSocket server;
     String name;
@@ -33,21 +31,23 @@ public class Server
     {
         while (true)
         {
-            ClientServerHandler clientThread = new ClientServerHandler(server.accept() , getRandName());
+            ClientHandler clientThread = new ClientHandler(server.accept() ,getRand());
             clients.add(clientThread);
             pool.execute(clientThread);
             System.out.println("client is connected-----------------------");
         }
     }
 
-    public static void broadcast(ClientServerHandler from , String message)
+    public static void broadcast(ClientHandler from , String message) throws IOException
     {
-        for(ClientServerHandler clientServerHandler : clients)
+        if(message != null)
+             System.out.println(message);
+        for(ClientHandler clientServerHandler : clients)
         {
                 if(clientServerHandler.username.equals(from.username))
-                    clientServerHandler.out.println(message);
+                    clientServerHandler.out.writeUTF(message);
                 else
-                    clientServerHandler.out.println(from.username + "Says: " + message);
+                    clientServerHandler.out.writeUTF(from.username + "Says: " + message);
         }
     }
     public static void main(String[] args) throws IOException
@@ -56,13 +56,9 @@ public class Server
             getInstance().getConnection();
     }
 
-//    public void setName(String name)
-//    {
-//        this.name = name;
-//    }
-    public String getRandName()
+    public String getRand()
     {
-        String s[] = {"Ahmed" , "Salah"};
+        String s[] = {"ahmed" , "salah"};
         return s[idx--];
     }
 }

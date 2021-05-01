@@ -9,15 +9,14 @@ public class Client
 {
     public static void main(String[] args) throws IOException
     {
-        int port = 9507;
-        Socket socket = new Socket("localhost" , port);
+        Socket socket = new Socket("localhost" , 9507);
         PrintWriter out = new PrintWriter(socket.getOutputStream() , true);
         Scanner scanner = new Scanner(System.in);
         String message;
 
-        ServerConnection serverConnection = new ServerConnection(socket);
+        ServerHandler serverHandler = new ServerHandler(socket);
 
-        new Thread(serverConnection).start();
+        new Thread(serverHandler).start();
         while (true)
         {
             message = scanner.nextLine();
