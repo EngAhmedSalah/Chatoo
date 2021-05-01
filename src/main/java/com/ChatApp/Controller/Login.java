@@ -4,22 +4,14 @@ import com.ChatApp.View.ViewFactory;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import javax.swing.text.View;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Login
 {
@@ -54,7 +46,7 @@ public class Login
 
 
     @FXML
-    void authentication()
+    void authentication() throws IOException
     {
         String username = usernameField.getText();
         String password = passwordField.getText();

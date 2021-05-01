@@ -6,17 +6,18 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientServerHandler implements Runnable
+public class ClientServerHandler extends Thread
 {
-    private BufferedReader in;
-    private PrintWriter out;
-    private Socket socket;
-
-    public ClientServerHandler(Socket socket) throws IOException
+    public BufferedReader in;
+    public PrintWriter out;
+    public Socket socket;
+    String username;
+    public ClientServerHandler(Socket socket, String username) throws IOException
     {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream() , true);
+        this.username = username;
     }
 
     @Override
@@ -28,7 +29,14 @@ public class ClientServerHandler implements Runnable
             while (true)
             {
                 message = in.readLine();
-                broadcast(message);
+                if(message.equals("Bye Bye"))
+                {
+                    this.socket.close();لهف
+                    this.out.close();
+                    this.in.close();
+                }
+                else
+                     Server.broadcast(this , message);
             }
 
         } catch (IOException e)
@@ -38,12 +46,4 @@ public class ClientServerHandler implements Runnable
 
     }
 
-    private void broadcast(String message)
-    {
-        for(ClientServerHandler client : Server.clients)
-        {
-            if(message != null)
-                client.out.println(message);
-        }
-    }
 }
