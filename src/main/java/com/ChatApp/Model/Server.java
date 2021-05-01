@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 
 public class Server
 {
+    public static Server serverInstance;
     private static int port = 9507;
     private int idx = 1;
     public static ArrayList<ClientServerHandler> clients;
@@ -17,10 +18,15 @@ public class Server
     ServerSocket server;
     String name;
 
-    public Server(ServerSocket server) throws IOException
+    private Server() throws IOException
     {
-        this.server = server;
         clients = new ArrayList<>();
+        this.server = new ServerSocket(port);
+    }
+
+    public static Server getInstance() throws IOException
+    {
+        return serverInstance == null ? new Server() : serverInstance;
     }
 
     public void getConnection() throws IOException
@@ -47,7 +53,7 @@ public class Server
     public static void main(String[] args) throws IOException
     {
             System.out.println("Waiting for connection--------------------");
-            new Server(new ServerSocket(port)).getConnection();
+            getInstance().getConnection();
     }
 
 //    public void setName(String name)

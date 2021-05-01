@@ -31,7 +31,7 @@ public class ClientServerHandler extends Thread
                 message = in.readLine();
                 if(message.equals("Bye Bye"))
                 {
-                    this.socket.close();لهف
+                    this.socket.close();
                     this.out.close();
                     this.in.close();
                 }
