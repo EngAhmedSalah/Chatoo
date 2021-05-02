@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class Server
 {
-    int idx = 1;
+    static int idx = 3;
     public static Server serverInstance;
     private static int port = 9507;
     public static ArrayList<ClientHandler> clients;
@@ -44,10 +44,10 @@ public class Server
              System.out.println(message);
         for(ClientHandler clientServerHandler : clients)
         {
-                if(clientServerHandler.username.equals(from.username))
-                    clientServerHandler.out.writeUTF(message);
-                else
-                    clientServerHandler.out.writeUTF(from.username + "Says: " + message);
+                if(!clientServerHandler.username.equals(from.username))
+//                    clientServerHandler.out.writeUTF(message);
+//                else
+                    clientServerHandler.out.writeUTF(from.username + "Says: " + message + "\n");
         }
     }
     public static void main(String[] args) throws IOException
@@ -58,7 +58,7 @@ public class Server
 
     public String getRand()
     {
-        String s[] = {"ahmed" , "salah"};
+        String s[] = {"ahmed" , "Mostafa" , "Shady" , "Asmaa"};
         return s[idx--];
     }
 }

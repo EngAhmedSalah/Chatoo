@@ -1,10 +1,7 @@
 package com.ChatApp.Model;
 
-import javax.xml.crypto.Data;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class ServerHandler implements Runnable

@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Security
 {
+    public static String username;
     DAO dao = new DAOImp();
     private static Security instance = null;
 

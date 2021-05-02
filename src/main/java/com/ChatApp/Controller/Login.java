@@ -55,6 +55,7 @@ public class Login
             {
                 mainContentArea.getChildren().clear();
                 mainContentArea.getChildren().add(viewFactory.showMainApp());
+                Security.username = username;
             }
         else
             errorLabel.setVisible(true);
