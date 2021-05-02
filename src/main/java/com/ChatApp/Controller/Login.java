@@ -17,6 +17,7 @@ public class Login
 {
     Security singleton = Security.getSecurityInstance();
     ViewFactory viewFactory = new ViewFactory();
+    public static String username;
 
     @FXML
     private AnchorPane mainContentArea;
@@ -48,14 +49,13 @@ public class Login
     @FXML
     void authentication() throws IOException
     {
-        String username = usernameField.getText();
+        username = usernameField.getText();
         String password = passwordField.getText();
         System.out.println(username + " " + password);
         if(singleton.auth(username , password))
             {
                 mainContentArea.getChildren().clear();
                 mainContentArea.getChildren().add(viewFactory.showMainApp());
-                Security.username = username;
             }
         else
             errorLabel.setVisible(true);

@@ -1,5 +1,7 @@
 package com.ChatApp.Model;
 
+import com.ChatApp.View.ViewFactory;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class Server
     {
         while (true)
         {
-            ClientHandler clientThread = new ClientHandler(server.accept() ,getRand());
+            ClientHandler clientThread = new ClientHandler(server.accept());
             clients.add(clientThread);
             pool.execute(clientThread);
             System.out.println("client is connected-----------------------");
@@ -44,21 +46,12 @@ public class Server
              System.out.println(message);
         for(ClientHandler clientServerHandler : clients)
         {
-                if(!clientServerHandler.username.equals(from.username))
-//                    clientServerHandler.out.writeUTF(message);
-//                else
-                    clientServerHandler.out.writeUTF(from.username + "Says: " + message + "\n");
+                    clientServerHandler.out.writeUTF(message + "\n");
         }
     }
     public static void main(String[] args) throws IOException
     {
             System.out.println("Waiting for connection--------------------");
             getInstance().getConnection();
-    }
-
-    public String getRand()
-    {
-        String s[] = {"ahmed" , "Mostafa" , "Shady" , "Asmaa"};
-        return s[idx--];
     }
 }

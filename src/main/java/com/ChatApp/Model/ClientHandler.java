@@ -8,13 +8,11 @@ public class ClientHandler extends Thread
     DataOutputStream out;
     DataInputStream in ;
     public Socket socket;
-    String username;
-    public ClientHandler(Socket socket, String username) throws IOException
+    public ClientHandler(Socket socket) throws IOException
     {
         this.socket = socket;
         out = new DataOutputStream(socket.getOutputStream());
         in = new DataInputStream(socket.getInputStream());
-        this.username = username;
     }
 
     @Override
