@@ -18,7 +18,6 @@ public class DAOImp implements DAO
     @Override
     public File getUsers() throws URISyntaxException
     {
-        ClassLoader loader = ClassLoader.getSystemClassLoader();
         File file = new File("src/main/resources/database/loginData/loginData.txt");
         return file;
     }
@@ -26,7 +25,6 @@ public class DAOImp implements DAO
     @Override
     public void saveUser(String line) throws IOException, URISyntaxException
     {
-        ClassLoader loader = ClassLoader.getSystemClassLoader();
         File file = new File("src/main/resources/database/loginData/loginData.txt");
         FileWriter writer = new FileWriter(file , true);
         writer.write(line + "\n");

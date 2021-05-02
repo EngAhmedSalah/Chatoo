@@ -12,10 +12,18 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Client implements Initializable , Runnable
 {
+    Thread t;
     DataOutputStream out;
     DataInputStream in ;
     String message;
@@ -36,6 +44,17 @@ public class Client implements Initializable , Runnable
         chatBox.appendText("Me : " + message + "\n");
         System.out.println("from send Message" + Login.username);
         messageBox.clear();
+        if(message.trim().equalsIgnoreCase("Bye Bye"))
+        {
+            String currentUserChat = chatBox.getText();
+            String outFileName = "src/main/resources/database/dumbs/output.txt";
+            Files.write(Paths.get(outFileName), currentUserChat.getBytes());
+
+
+            System.exit(0);
+        }
+
+
     }
 
     @Override
@@ -58,6 +77,12 @@ public class Client implements Initializable , Runnable
                     message.append(data[i]);
                 if(user.equalsIgnoreCase(Login.username))
                     continue;
+                else if(message.toString().trim().equalsIgnoreCase("Bye Bye"))
+                {
+                    messageBox.setDisable(true);
+                    break;
+                }
+
                 chatBox.appendText(user + " : " + message);
             }
         }
@@ -85,6 +110,7 @@ public class Client implements Initializable , Runnable
         {
             e.printStackTrace();
         }
-        new Thread(this).start();
+        t = new Thread(this);
+        t.start();
     }
 }
