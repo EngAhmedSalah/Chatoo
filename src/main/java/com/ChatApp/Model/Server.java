@@ -42,13 +42,13 @@ public class Server
 
     public static void broadcast(ClientHandler from , String message) throws IOException
     {
-        if(message != null)
-             System.out.println(message);
         for(ClientHandler clientServerHandler : clients)
         {
-                    clientServerHandler.out.writeUTF(message + "\n");
+            clientServerHandler.out.writeUTF(message + "\n");
         }
     }
+
+
     public static void main(String[] args) throws IOException
     {
             System.out.println("Waiting for connection--------------------");

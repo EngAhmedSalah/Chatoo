@@ -32,9 +32,9 @@ public class Client implements Initializable , Runnable
     void sendMessage(ActionEvent event) throws IOException
     {
         message = messageBox.getText();
-        out.writeUTF(message);
-
+        out.writeUTF(Login.username + "," + message);
         chatBox.appendText("Me : " + message + "\n");
+        System.out.println("from send Message" + Login.username);
         messageBox.clear();
     }
 
@@ -44,12 +44,21 @@ public class Client implements Initializable , Runnable
         String serverResponse;
         try
         {
+            String user;
+
             while (true)
             {
+                StringBuilder message = new StringBuilder();
                 serverResponse = in.readUTF();
                 if(serverResponse == null) break;
                 System.out.println(serverResponse);
-                chatBox.appendText(Login.username + " : " + serverResponse);
+                String[] data = serverResponse.split(",");
+                user = data[0];
+                for (int i = 1 ; i < data.length ; ++i)
+                    message.append(data[i]);
+                if(user.equalsIgnoreCase(Login.username))
+                    continue;
+                chatBox.appendText(user + " : " + message);
             }
         }
         catch (IOException e)
