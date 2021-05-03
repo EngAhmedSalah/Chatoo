@@ -15,8 +15,8 @@ you can clone the repository for the project code template or for the full sourc
 ## Getting Started
 * Clone the repository
 * import maven dependancies
-* run the server main file
-* run the App main file
+* run the server main file from **src/main/java/com/ChatApp/Model**
+* run the App main file from **src/main/java**
 * if you have registerd before then login. otherwise , register new user
 #### enjoy chating
 
