@@ -1,49 +1,57 @@
 package com.ChatApp.View;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class ViewFactory
 {
     public static ViewFactory defaultFactory = new ViewFactory();
-
-    private final String MAIN_SCREEN = "/view/mainApp.fxml";
-    private final String SIGNUP_SCREEN = "/view/register.fxml";
-    private final String LOGIN_SCREEN = "/view/login.fxml";
+    public static Stage primaryStage = new Stage();
 
     public void showRegistration()
     {
-        Scene scene = new Scene(initializeScene(SIGNUP_SCREEN));
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
+        FXMLLoader loader;
+        Parent parent = null;
+        try {
+            loader = new FXMLLoader(getClass().getResource("/view/register.fxml"));
+            parent = loader.load();
+        } catch (Exception e)
+        {
+        }
+        primaryStage.setScene(new Scene(parent , 400 , 500));
         primaryStage.show();
     }
 
-    public Parent showLogin()
-    {
-        return initializeScene(LOGIN_SCREEN);
-    }
-
-    public Parent showMainApp()
-    {
-        return initializeScene(MAIN_SCREEN);
-    }
-
-    private Parent initializeScene(String fxmlPath)
+    public void showLogin()
     {
         FXMLLoader loader;
-        Parent parent;
-        Scene scene;
+        Parent parent = null;
         try {
-            loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             parent = loader.load();
-        } catch (Exception e) {
-            return null;
+        } catch (Exception e)
+        {
         }
+        primaryStage.setScene(new Scene(parent , 800 , 600));
+        primaryStage.show();
+    }
 
-        return parent;
+    public void showMainApp()
+    {
+        FXMLLoader loader;
+        Parent parent = null;
+        primaryStage.close();
+        try {
+            loader = new FXMLLoader(getClass().getResource("/view/mainApp.fxml"));
+            parent = loader.load();
+        } catch (Exception e)
+        {
+        }
+        primaryStage.setScene(new Scene(parent , 400 , 600));
+        primaryStage.show();
     }
 }

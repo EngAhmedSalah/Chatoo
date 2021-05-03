@@ -19,10 +19,6 @@ public class App extends Application
     public void start(Stage primaryStage) throws Exception
     {
         ViewFactory viewFactory = ViewFactory.defaultFactory;
-        Parent parent = viewFactory.showLogin();
-        Scene scene = new Scene(parent);
-        primaryStage.setTitle("Budgie Mail Client");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        viewFactory.showLogin();
     }
 }

@@ -2,47 +2,67 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.Client">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ChatApp.Controller.Client">
+<BorderPane maxHeight="600.0" maxWidth="820.0" prefHeight="600.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="83.0" prefWidth="800.0">
                <children>
-                  <Label fx:id="membersLabel" text="members" />
+                  <Label fx:id="membersLabel" depthTest="DISABLE" text="members">
+                        <font>
+                           <Font name="System Bold" size="22.0" />
+                        </font></Label>
                </children>
+                  <opaqueInsets>
+                     <Insets left="90.0" />
+                  </opaqueInsets>
             </HBox>
-            <ScrollPane prefHeight="473.0" prefWidth="800.0">
-               <content>
-                  <VBox prefHeight="467.0" prefWidth="788.0">
+               <AnchorPane prefHeight="470.0" prefWidth="820.0">
+                  <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="456.0" prefWidth="820.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane prefHeight="470.0" prefWidth="793.0">
+                           <children>
+                              <TextArea fx:id="chatBox" editable="false" prefHeight="453.0" prefWidth="820.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  </children>
+               </AnchorPane>
+               <AnchorPane prefHeight="54.0" prefWidth="820.0">
+                  <children>
+                  <HBox alignment="CENTER" prefHeight="11.0" prefWidth="800.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextArea fx:id="chatBox" prefHeight="200.0" prefWidth="200.0" />
-                     </children></VBox>
-               </content>
-            </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="11.0" prefWidth="800.0">
-               <children>
-                  <JFXButton buttonType="RAISED" onAction="#sendMessage" prefHeight="37.0" prefWidth="89.0" text="Send">
-                     <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/sent2.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXTextArea fx:id="messageBox" prefHeight="62.0" prefWidth="675.0" promptText="Type your message" wrapText="true" />
-               </children>
-            </HBox>
+                        <JFXButton buttonType="RAISED" onAction="#sendMessage" prefHeight="37.0" prefWidth="89.0" text="Send">
+                           <graphic>
+                              <ImageView fitHeight="44.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/sent2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXTextArea fx:id="messageBox" prefHeight="39.0" prefWidth="291.0" promptText="Type your message" wrapText="true" />
+                     </children>
+                  </HBox>
+                  </children>
+               </AnchorPane>
          </children>
       </VBox>
    </center>
 </BorderPane>
+</AnchorPane>
