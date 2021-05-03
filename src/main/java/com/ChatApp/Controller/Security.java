@@ -14,7 +14,8 @@ public class Security
     DAO dao = new DAOImp();
     private static Security instance = null;
 
-    private Security() throws URISyntaxException
+
+    private Security()
     {
     }
 
@@ -26,6 +27,13 @@ public class Security
             return instance;
     }
 
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @return boolean value identify if the username and password are exist and valid
+     */
     public boolean auth(String username, String password)
     {
         boolean found = false;
@@ -52,28 +60,45 @@ public class Security
         return found;
     }
 
+    /**
+     *
+     * @param password
+     * @param confirmPassword
+     * @return string value that is the hashed value of the password in case of the password is equal the confirm password value
+     */
     public static String confirmPassword(String password , String confirmPassword)
     {
         if(password.equals(confirmPassword))
             return hashing(password);
         return null;
     }
+
+    /**
+     *
+     * @param passwordToHash
+     * @return the hashed value of the password
+     * @description hash the password using md5 hashing technique
+     */
     public static String hashing(String passwordToHash)
     {
         String generatedPassword = null;
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
+
             //Add password bytes to digest
             md.update(passwordToHash.getBytes());
+
             //Get the hash's bytes
             byte[] bytes = md.digest();
+
             //This bytes[] has bytes in decimal format;
             //Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
+
+            for (byte aByte : bytes)
             {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();

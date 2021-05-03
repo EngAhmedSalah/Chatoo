@@ -5,53 +5,64 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class ViewFactory
 {
     public static ViewFactory defaultFactory = new ViewFactory();
-    public static Stage primaryStage = new Stage();
+    public  static Stage loginStage = new Stage();
+    public  static Stage registerStage = new Stage();
+    public static Stage mainAppStage = new Stage();
+
+    private ViewFactory()
+    {}
+
+    public static ViewFactory getDefaultFactory()
+    {
+        return defaultFactory;
+    }
 
     public void showRegistration()
     {
-        FXMLLoader loader;
         Parent parent = null;
+        loginStage.close();
+        FXMLLoader loader;
         try {
             loader = new FXMLLoader(getClass().getResource("/view/register.fxml"));
             parent = loader.load();
         } catch (Exception e)
         {
         }
-        primaryStage.setScene(new Scene(parent , 400 , 500));
-        primaryStage.show();
+        registerStage.setScene(new Scene(parent , 400 , 500));
+        registerStage.show();
     }
 
     public void showLogin()
     {
-        FXMLLoader loader;
+        registerStage.close();
         Parent parent = null;
+        FXMLLoader loader;
         try {
             loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             parent = loader.load();
         } catch (Exception e)
         {
         }
-        primaryStage.setScene(new Scene(parent , 800 , 600));
-        primaryStage.show();
+        loginStage.setScene(new Scene(parent , 800 , 600));
+        loginStage.show();
     }
 
     public void showMainApp()
     {
         FXMLLoader loader;
         Parent parent = null;
-        primaryStage.close();
-        try {
+        loginStage.close();
+        try
+        {
             loader = new FXMLLoader(getClass().getResource("/view/mainApp.fxml"));
             parent = loader.load();
         } catch (Exception e)
         {
         }
-        primaryStage.setScene(new Scene(parent , 400 , 600));
-        primaryStage.show();
+        mainAppStage.setScene(new Scene(parent , 400 , 600));
+        mainAppStage.show();
     }
 }

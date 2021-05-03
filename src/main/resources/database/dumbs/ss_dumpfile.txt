@@ -1,4 +1,0 @@
-ahmedSalah: hello
-ahmedSalah: hi
-Me: hi
-Me: Bye Bye

@@ -2,6 +2,7 @@ package com.ChatApp.Controller;
 
 import com.ChatApp.DAO.DAO;
 import com.ChatApp.DAO.DAOImp;
+import com.ChatApp.View.ViewFactory;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import java.net.URISyntaxException;
 public class Register
 {
     Security singleton = Security.getSecurityInstance();
+    ViewFactory viewFactory = ViewFactory.getDefaultFactory();
     DAO dao = new DAOImp();
     @FXML
     private JFXTextField usernameField;
@@ -41,6 +43,7 @@ public class Register
         {
             dao.saveUser(username  + "," + singleton.hashing(password + username));
             successLabel.setVisible(true);
+            viewFactory.showLogin();
         }
         else
             errorLabel.setVisible(true);

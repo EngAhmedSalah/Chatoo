@@ -1,5 +1,7 @@
 package com.ChatApp.Controller;
 
+import com.ChatApp.DAO.DAO;
+import com.ChatApp.DAO.DAOImp;
 import com.ChatApp.View.ViewFactory;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ import java.util.stream.Stream;
 
 public class Client implements Initializable, Runnable
 {
+    DAO daoSingleton = new DAOImp();
     //streams for sending /receiving data to/from server
     DataOutputStream out;
     DataInputStream in;
@@ -39,6 +42,10 @@ public class Client implements Initializable, Runnable
     @FXML
     private JFXTextArea messageBox;
 
+    /**
+     *
+     * @throws IOException
+     */
     //action handler for sending message button
     @FXML
     void sendMessage() throws IOException
@@ -58,11 +65,12 @@ public class Client implements Initializable, Runnable
             //get the whole chat from chat box
             String currentUserChat = chatBox.getText();
 
-            gatDumpFile(currentUserChat);
-            gatDumpfileStatistics(currentUserChat);
+            daoSingleton.gatDumpFile(currentUserChat);
+            daoSingleton.gatDumpfileStatistics(currentUserChat);
             System.exit(0);
         }
     }
+
 
     /*handling receiving new message*/
     @Override
@@ -107,7 +115,12 @@ public class Client implements Initializable, Runnable
         }
     }
 
-    //initialization method that is been compiled in the first time loading the main app
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     * @description initialization method that is been compiled in the first time loading the main app
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -127,33 +140,5 @@ public class Client implements Initializable, Runnable
             e.printStackTrace();
         }
         new Thread(this).start();
-    }
-
-    private void gatDumpFile(String currentUserChat) throws IOException
-    {
-        //define the filename
-        String outFileName = "src/main/resources/database/dumbs/"+ Login.username + "_dumpfile.txt";
-
-        //write the chat content to the file
-        Files.write(Paths.get(outFileName), currentUserChat.getBytes());
-    }
-
-    private void gatDumpfileStatistics(String currentUserChat) throws IOException
-    {
-        //define the filename
-        String outFileName = "src/main/resources/database/dumbs/" + Login.username + "_dumpfileStatistics.txt";
-
-        //java 8 stream to filter the text
-        List <String> list = Stream.of(currentUserChat)
-                .map(w -> w.split("\\s+")).flatMap(Arrays::stream)
-                .filter(x -> !x.contains(":"))
-                .collect(Collectors.toList());
-
-        //counting each word using map<key , value>
-        Map<String, Integer> wordCounter = list.stream()
-                .collect(Collectors.toMap(String::toLowerCase, w -> 1, Integer::sum));
-
-        //write the count results to the file
-        Files.write(Paths.get(outFileName), wordCounter.toString().getBytes());
     }
 }

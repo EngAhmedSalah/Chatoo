@@ -5,18 +5,20 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.URISyntaxException;
 
 public class Login
 {
-    Security singleton = Security.getSecurityInstance();
-    ViewFactory viewFactory = new ViewFactory();
-    public static String username;
 
-    @FXML
-    private AnchorPane mainContentArea;
+   /* singleton object from Security class for authentication and authorization*/
+    Security singleton = Security.getSecurityInstance();
+
+    /* singleton object from ViewFactory class for defining the scenes*/
+    ViewFactory viewFactory = ViewFactory.getDefaultFactory();
+
+
+    public static String username;
 
     @FXML
     private JFXTextField usernameField;
@@ -29,6 +31,7 @@ public class Login
 
     public Login() throws URISyntaxException { }
 
+
     @FXML
     void showRegister()
     {
@@ -36,6 +39,9 @@ public class Login
     }
 
 
+    /**
+     * @description for authenticate that the username and password is vaild
+     */
     @FXML
     void authentication()
     {

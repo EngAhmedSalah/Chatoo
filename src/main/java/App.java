@@ -15,6 +15,12 @@ public class App extends Application
         launch(args);
     }
 
+    /**
+     *
+     * @param primaryStage
+     * @throws Exception
+     * @description
+     */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
